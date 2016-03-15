@@ -2,14 +2,15 @@ source 'https://rubygems.org'
 
 gem 'sass', '3.4.21'
 group :test, :development do
-gem "rspec-rails", "~> 2.0"
+gem "rspec-rails", "~> 3.4.2"
 gem "factory_girl_rails", "~> 4.0"
 gem "capybara"
 gem "database_cleaner"
 gem "selenium-webdriver"
 end
 
-gem 'bower-rails' 
+gem 'pg'
+gem 'bower-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
@@ -22,6 +23,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+gem 'angularjs-rails'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
