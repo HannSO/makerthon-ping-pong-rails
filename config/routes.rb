@@ -2,8 +2,8 @@
 Rails.application.routes.draw do
   root 'players#index'
    get '*path' => 'players#index'
-  resources :players do
-    resources :games
+  resources :games, shallow: true do
+    resources :players
   end
 
 
