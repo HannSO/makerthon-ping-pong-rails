@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(version: 20160315171620) do
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "wins"
     t.integer  "losses"
-    t.decimal  "winpercentage"
+    t.decimal  "win_percentage"
   end
 
 end
