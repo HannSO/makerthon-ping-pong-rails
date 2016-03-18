@@ -1,10 +1,7 @@
 class PlayersController < ApplicationController
 
   def index
-    @player = render json: Player.select('name')
+    @player = render json: Player.all.order(:win_percentage).reverse_order
   end
 
-  def show
-    # api = RestClient.get(https://slack.com/api/usersdw.list)
-  end
 end

@@ -1,31 +1,15 @@
 class GamesController < ApplicationController
 
-  def index
-    @game = Game.new
-  end
-
-  def new
-  end
+  skip_before_action :verify_authenticity_token
 
   def create
-    @game.new = Game.new(game_params)
-    if @game.winner == Player.name && @game.loser == Player.name
-    @game = Game.create(game_params)
-  end
-
-  def show
-  end
-
-  def update
-    # if @game.update(game_params)
-    #   render json: @game
-    # else
-    #   render json: @game
-    # end
-  end
-
-  def destroy
-
+    @game = Game.new(game_params)
+    if Player.exists?(name: @game.winner) && Player.exists?(name: @game.loser)
+      @game.save
+      render json: @game, status: :created, location: @game
+    else
+      render json: @game.errors, status: :unprocessable_entity
+    end
   end
 
   private
