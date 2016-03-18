@@ -9,6 +9,10 @@ gem "database_cleaner"
 gem "selenium-webdriver"
 end
 
+gem 'rack-cors', :require => 'rack/cors'
+gem 'responders', '~> 2.0'
+gem 'dotenv-rails'
+
 gem 'pg'
 gem 'bower-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
