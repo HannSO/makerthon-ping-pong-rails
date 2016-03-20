@@ -2,29 +2,27 @@ class Player < ActiveRecord::Base
   has_many :games
   validates :name, length: {minimum: 3}
 
-  def self.update_results(winner, loser)
-    update_wins(winner)
-    update_losses(loser)
-    calculate_win_percentage(winner)
-    calculate_win_percentage(loser)
+  def self.update_results(winner_name, loser_name)
+    winner = Player.find_by(name: winner_name)
+    winner.update_wins
+    winner.calculate_win_percentage
+
+    loser = Player.find_by(name:loser_name)
+    loser.update_losses
+    loser.calculate_win_percentage
   end
 
-  def self.update_wins(winner)
-    id = Player.find_by(name: winner).id
+  def update_wins
     Player.increment_counter(:wins, id)
   end
 
-  def self.update_losses(loser)
-    id = Player.find_by(name: loser).id
+  def update_losses
     Player.increment_counter(:losses, id)
   end
 
-  def self.calculate_win_percentage(player)
-    wins = Player.find_by(name:player).wins
-    losses = Player.find_by(name:player).losses
-    record = Player.find_by(name: player)
-    percentage_calculation = ((wins /(wins + losses.to_f)) * 100).round(2)
-    record.update_columns(win_percentage: percentage_calculation)
+  def calculate_win_percentage
+    percentage_calculation =  ((wins/(wins + losses)).to_f * 100).round(2)
+    update_columns(win_percentage: percentage_calculation)
   end
 
   def self.add_slack_users
