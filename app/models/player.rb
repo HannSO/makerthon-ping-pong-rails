@@ -21,8 +21,8 @@ class Player < ActiveRecord::Base
   end
 
   def calculate_win_percentage
-    percentage_calculation =  ((wins/(wins + losses)).to_f * 100).round(2)
-    update_columns(win_percentage: percentage_calculation)
+    percentage_calculation = ((self.wins/(self.wins + self.losses).to_f) * 100).round(2)
+    self.update_columns(win_percentage: percentage_calculation)
   end
 
   def self.add_slack_users
